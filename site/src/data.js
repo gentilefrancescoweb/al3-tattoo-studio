@@ -11,7 +11,7 @@ export const STUDIO = {
   // Italian law: a VAT-registered business shows its Partita IVA on its website. Both from the owner (round 8);
   // while empty the page shows a "da inserire" marker and verify.mjs fails, so it cannot ship half-done
   vat: "02665090029", // Partita IVA (owner, 2026-10-28; check digit verified)
-  privacyEmail: "", // PLACEHOLDER: where privacy requests go
+  privacyEmail: "al3tattoostudio@gmail.com", // where privacy requests go (owner, 2026-10-28)
   mapsUrl: "https://maps.app.goo.gl/fw5NLr9mtjjSzXzt7",
   phoneDisplay: "015 247 0107",
   phoneTel: "+390152470107",
