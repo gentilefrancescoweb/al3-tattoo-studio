@@ -10,7 +10,7 @@ export const STUDIO = {
   address: "Via Mazzini 10/c, Biella",
   // Italian law: a VAT-registered business shows its Partita IVA on its website. Both from the owner (round 8);
   // while empty the page shows a "da inserire" marker and verify.mjs fails, so it cannot ship half-done
-  vat: "", // PLACEHOLDER: Partita IVA, 11 digits
+  vat: "02665090029", // Partita IVA (owner, 2026-10-28; check digit verified)
   privacyEmail: "", // PLACEHOLDER: where privacy requests go
   mapsUrl: "https://maps.app.goo.gl/fw5NLr9mtjjSzXzt7",
   phoneDisplay: "015 247 0107",
