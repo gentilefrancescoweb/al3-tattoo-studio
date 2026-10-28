@@ -55,11 +55,11 @@ const TATTOOS = ARCHIVE.filter((w) => !w.design);
 const BADGE_TILE = { id: "z21", file: "z21", style: "lettering", title: "AL3 Tattoo Studio, il marchio", design: true };
 const label = (w) => w.title || `${STYLE_LABEL[w.style]} · ${w.year}`;
 const altText = (w) => `${STYLE_LABEL[w.style]} — ${w.title || `lavoro del ${w.year}`}`;
-// open a design: his drawings browse among themselves, full drawing; tattoos open on their lifted design
-const openDesign = (id) => {
-  const d = DRAWINGS.findIndex((w) => w.id === id);
-  if (d >= 0) lightboxOpen(DRAWINGS, d, false);
-  else lightboxOpen(TATTOOS, TATTOOS.findIndex((w) => w.id === id), true);
+// open a design from the hero or the wall: browse only the designs that fly there (owner, round 9: the arrows showed
+// photos on skin), his drawings as full sheets, tattoos on their lifted design ("Sulla pelle" still shows one's photo)
+const openDesign = (id, list) => {
+  const l = list || POOL;
+  lightboxOpen(l, l.findIndex((w) => w.id === id), true, true);
 };
 // hero pool: the strongest designs first (they are gated by the loader), then the rest shuffled
 const LEAD = ["33", "a175", "14", "a298", "16", "a094", "a303", "17", "a020", "a432", "a355", "a097", "a427", "a184", "a077", "a663", "a392", "a009"];
@@ -494,7 +494,7 @@ function actWall() {
   track.innerHTML = cards.map((w) => `<button class="flash" type="button" style="aspect-ratio:${INK_ASPECT[w.file] || 0.8};--r:${((rnd() - 0.5) * 12).toFixed(1)}deg;--dy:${((rnd() - 0.5) * 5).toFixed(1)}vh" data-id="${w.id}" aria-label="${altText(w)}, solo il disegno">
       <img src="${w.hsrc}" alt="" loading="lazy" decoding="async" /></button>`).join("");
   $("#muro-n").textContent = cards.length;
-  $$(".flash", track).forEach((b) => b.addEventListener("click", () => openDesign(b.dataset.id)));
+  $$(".flash", track).forEach((b) => b.addEventListener("click", () => openDesign(b.dataset.id, cards))); // in the wall's order
   const dist = () => Math.max(0, track.scrollWidth - innerWidth);
   const PACE = 1.5; // the wall slides 1.5 px per px scrolled: all 109 designs pass without an endless pin
   const muro = $("#muro"); // sticky: one screen plus the slide, measured again before every refresh
@@ -572,11 +572,12 @@ function actArchive() {
 
   // lightbox: the photo on skin or, when the design was lifted off the skin, the design alone
   const lb = $("#lightbox"), img = $("#lb-img"), cap = $("#lb-cap"), mode = $("#lb-mode"), fig = $(".lb-fig");
-  let list = [], idx = 0, lastFocus = null, inkMode = false;
+  let list = [], idx = 0, lastFocus = null, inkMode = false, designsOnly = false;
   const show = (i) => {
+    if (i !== idx && designsOnly) inkMode = true; // stepping through designs lands on the next design, even after "Sulla pelle"
     idx = (i + list.length) % list.length;
     const w = list[idx];
-    const ink = inkMode && w.ink;
+    const ink = inkMode && w.ink && !w.design; // his drawings show the full sheet
     fig.classList.toggle("ink", ink);
     img.src = ink ? `/ink/${w.file}.webp` : `/works/${w.file}.webp`;
     img.alt = ink ? `${altText(w)}, solo il disegno` : altText(w);
@@ -586,10 +587,10 @@ function actArchive() {
     mode.setAttribute("aria-pressed", ink ? "true" : "false");
   };
   const close = () => { lb.hidden = true; lenis.start(); lastFocus?.focus?.(); };
-  lightboxOpen = (l, i, ink = false) => {
+  lightboxOpen = (l, i, ink = false, designs = false) => {
     if (!l.length || i < 0) return;
-    list = l; inkMode = ink; lastFocus = document.activeElement;
-    show(i); lb.hidden = false; lenis.stop(); $("#lb-close").focus();
+    list = l; inkMode = ink; designsOnly = designs; lastFocus = document.activeElement;
+    idx = i; show(i); lb.hidden = false; lenis.stop(); $("#lb-close").focus();
   };
   mode.addEventListener("click", () => { inkMode = !inkMode; show(idx); });
   $("#lb-close").addEventListener("click", close);
