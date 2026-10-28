@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>AL3 Tattoo Studio · Sgt. Zippo, il tatuatiere · Biella</title>
+  <meta name="description" content="AL3 Tattoo Studio di Sgt. Zippo, Via Mazzini 10/c, Biella. Realismo black & grey, blackwork, fine line, lettering, piercing. Aperto dal martedì al sabato, 14:30–19:00." />
+  <meta name="theme-color" content="#0b0a0b" />
+  <meta property="og:title" content="AL3 Tattoo Studio · Sgt. Zippo" />
+  <meta property="og:description" content="Il tatuatiere di Biella. 100% good habits." />
+  <meta property="og:image" content="/studio/vvv-red.webp" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" href="/brand/icon-192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/fonts/fonts.css" />
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <!-- Act 0 — La ferita: a crack the needle light walks while every byte loads -->
+  <div id="loader" class="loader" aria-live="polite">
+    <div class="lp lp-top"></div>
+    <div class="lp lp-bot"></div>
+    <svg class="crack" id="crack" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+      <path id="crack-base" class="crack-base" vector-effect="non-scaling-stroke" />
+      <path id="crack-lit" class="crack-lit" vector-effect="non-scaling-stroke" pathLength="100" />
+      <g id="crack-branches" class="crack-branches"></g>
+    </svg>
+    <span class="needle" id="needle" aria-hidden="true"></span>
+    <div class="loader-head">
+      <img src="/brand/al3.webp" alt="" width="44" height="44" />
+      <span>AL3 Tattoo Studio · Biella</span>
+    </div>
+    <p class="loader-line" id="loader-line"></p>
+    <span class="loader-pct" id="loader-pct">0%</span>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <nav class="vrail" id="vrail" aria-label="Sezioni del sito"><canvas class="vrail-cv" aria-hidden="true"></canvas><ol class="vrail-marks"></ol></nav>
+  <div class="cursor" aria-hidden="true"><span class="cursor-ring"></span><svg class="cursor-machine" viewBox="-8 -84 62 88" aria-hidden="true"><g transform="rotate(32)" stroke="#0b0909" stroke-width="1.45" stroke-linejoin="round" stroke-linecap="round"><path class="cm-needle" d="M0 0V-12" stroke="#e8eaec" stroke-width="1.1"/><path d="M-1.6-9h3.2l2 -8h-7.2z" fill="#b9bdc2"/><rect x="-3.6" y="-31" width="7.2" height="14.5" fill="#9ea2a8"/><rect x="-2.1" y="-30" width="1.5" height="12" fill="#eef0f2" stroke="none" opacity=".85"/><rect x="-6.5" y="-50.5" width="13" height="20.5" rx="3" fill="#1c191b"/><path d="M-5-46.5h10M-5-42.5h10M-5-38.5h10M-5-34.5h10" stroke="#4d4548" stroke-width="1.1"/><rect x="-4.6" y="-49" width="1.8" height="17" rx=".9" fill="#857b7e" stroke="none" opacity=".75"/><path d="M-7.5-50.5h15l1-5h-16.5z" fill="#c8142a"/><path d="M1.5-55.5h5.2l.8-15.5q0-4.5-4.5-4.3l-27.8 1.6q-5 .4-5 5.2v5.2q0 3 3 3h3.2v-4.6l21.6-1.6.8 6.6z" fill="#c8142a"/><path d="M5.3-57.5l.6-13.2M-24.5-71.6l25.5-1.5" stroke="#ff6976" stroke-width="1" fill="none" opacity=".85"/><rect x="-23" y="-65.5" width="8" height="15" rx="2" fill="#c27a2c"/><rect x="-13.5" y="-65.5" width="8" height="15" rx="2" fill="#c27a2c"/><path d="M-22-62h6M-22-59.5h6M-22-57h6M-22-54.5h6M-12.5-62h6M-12.5-59.5h6M-12.5-57h6M-12.5-54.5h6" stroke="#6e3c0f" stroke-width=".7"/><path d="M-21.2-64v12M-11.7-64v12" stroke="#f4b866" stroke-width="1" opacity=".9"/><path d="M-24-50.5h21.5" stroke-width="2.2"/><path d="M-23.5-66.5h9v2.6h-9zM-14-66.5h9v2.6h-9zM-23.5-53.1h9v2.6h-9zM-14-53.1h9v2.6h-9z" fill="#8a5a1c"/><path d="M-3-51.5q5-9 2-23" fill="none" stroke="#d9d4cc" stroke-width="1.1"/><rect x="-4.5" y="-81.5" width="6" height="7" rx="1" fill="#e0b04a"/><path d="M-1.5-88v6.5" stroke="#e0b04a" stroke-width="2.2"/><circle cx="-1.5" cy="-88.5" r="2.4" fill="#ece6dc"/><circle cx="-27.2" cy="-68.2" r="2.1" fill="#e0b04a"/><circle cx="4.6" cy="-62" r="1.7" fill="#e0b04a"/><circle cx="-17" cy="-70.6" r="1.5" fill="#e0b04a"/><circle class="cm-tip" cx="0" cy="0" r="1.5" fill="#fff" stroke="none"/></g></svg></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="#top" aria-label="AL3 Tattoo Studio, torna all'inizio">
+      <img src="/brand/al3.webp" alt="" width="40" height="40" />
+      <span class="brand-txt"><b>AL3</b><i>Sgt. Zippo</i></span>
+    </a>
+    <nav class="nav-links" aria-label="Sezioni">
+      <a href="#postazione">Processo</a>
+      <a href="#spazio">Spazio</a>
+      <a href="#stili">Stili</a>
+      <a href="#archivio">Archivio</a>
+      <a href="#studio">Studio</a>
+    </nav>
+    <button class="snd" id="snd" type="button" aria-pressed="false" aria-label="Suono della macchinetta: spento" title="Accendi la macchinetta">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l5-5M8.5 15.5l7-7M14 7l3-3 3 3-3 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+    <a class="walkin-chip" id="walkin-chip" href="#walkin" hidden>Walk-in 31/10</a>
+    <a class="pill wa-link" id="nav-pill" href="#" target="_blank" rel="noopener">
+      <span class="pulse" aria-hidden="true"></span><span class="pill-long">Scrivimi su WhatsApp</span><span class="pill-short">WhatsApp</span>
+    </a>
+  </header>
+
+  <main id="main">
+    <!-- Act 1 — Il Tatuatiere: a tunnel of real work, washed in the studio's neon -->
+    <section class="hero" id="top">
+      <div class="hero-stage">
+        <canvas id="tunnel" aria-hidden="true"></canvas>
+        <div class="neon neon-red" aria-hidden="true"></div>
+        <div class="neon neon-blue" aria-hidden="true"></div>
+        <div class="hero-vignette" aria-hidden="true"></div>
+        <div class="hero-copy" id="hero-copy">
+          <p class="eyebrow"><span class="he-al3">AL3 Tattoo Studio — Biella, <span class="nb">Via Mazzini 10/c</span></span><span class="he-zp">Sgt. Zippo, Il Tatuatiere</span></p><!-- the address: owner, round 9; the second line shows while the badge is flipped to his rose (owner, round 9) -->
+          <h1 class="hero-title" aria-label="AL3 Tattoo Studio">
+            <span class="ht-line ht-logo" aria-hidden="true"><img class="ht-stencil" src="/brand/al3.webp" alt="" /><span class="ht-ink"><span class="al3"><span class="al3-flip"><span class="al3-face al3-front"><img class="al3-disc" src="/brand/al3-disc.webp" alt="" /><i class="al3-shine"></i><i class="al3-spark"></i><i class="al3-spark-head"><b></b></i><img class="al3-letters" src="/brand/al3-letters.webp" alt="" /></span><span class="al3-face al3-back"><img class="al3-disc" src="/brand/zippo-disc.webp" alt="" decoding="async" /><i class="al3-shine"></i><i class="al3-spark"></i><i class="al3-spark-head"><b></b></i><img class="al3-letters" src="/brand/zippo-rose.webp" alt="" decoding="async" /></span></span></span></span><i class="ht-needle"></i></span>
+          </h1>
+          <p class="hero-sub"><span>Tattoo · Piercing · Industry</span><span class="sep"></span><span>Good habits since 2024</span></p><!-- restored, round 9 (owner: "bring back this text in the hero page") -->
+        </div>
+        <div class="hero-foot">
+          <span class="status" data-status><i></i><span>—</span></span>
+          <button class="scroll-cue" id="scroll-cue" type="button">Scorri<span aria-hidden="true"></span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Act 1b — La postazione: the owner's desk photo, tattoo sketches drawn live on its left screen; scroll pushes into the screen -->
+    <section class="act desk" id="postazione">
+      <div class="desk-stage">
+        <div class="desk-scene" id="desk-scene">
+          <img class="desk-photo" id="desk-photo" src="/process/desk.webp" alt="La postazione: sullo schermo di sinistra, lo schizzo di un lupo pronto per diventare tatuaggio" width="2000" height="1125" />
+          <div class="desk-screen" id="desk-screen" aria-hidden="true"></div>
+        </div>
+        <div class="desk-vig" aria-hidden="true"></div>
+        <div class="desk-shade" aria-hidden="true"></div>
+        <div class="desk-copy">
+          <h2 class="h2 ink-head">Ogni segno<br />nasce qui</h2><!-- PLACEHOLDER copy -->
+          <p class="desk-line">Schizzo dopo schizzo, finché il disegno è pronto per la pelle.</p><!-- PLACEHOLDER copy -->
+          <p class="desk-note">Ogni disegno viene fatto e studiato su iPad usando Procreate e disegnato a mano con una Apple Pencil.</p><!-- owner copy, round 8 -->
+          <p class="desk-fine">Immagine a scopo illustrativo.</p><!-- owner: "Image for reference-only", round 8 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Act 2 — Dalla linea all'ombra: his owl, from the design to the healed tattoo, by scroll -->
+    <section class="act process" id="processo">
+      <div class="process-stage">
+        <div class="process-plate" id="process-plate">
+          <canvas id="process-canvas" aria-label="Gufo con luna e stelle: il disegno di Zippo che diventa il tatuaggio sul braccio, fino alla pelle guarita"></canvas>
+          <div class="process-tags" id="process-tags"></div>
+        </div>
+        <div class="process-copy">
+          <h2 class="h2 ink-head">Dalla linea<br />all'ombra</h2>
+          <div class="process-steps" id="process-steps"></div>
+          <div class="process-bar" aria-hidden="true"><span id="process-bar"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Act 2b — The Studio Space (round 8, replaces the Vipera band): his walk through the studio, scrubbed by scroll -->
+    <section class="act space" id="spazio">
+      <div class="space-stage" id="space-stage">
+        <canvas class="space-amb" id="space-amb" width="36" height="64" aria-hidden="true"></canvas>
+        <div class="space-veil" aria-hidden="true"></div>
+        <div class="space-in">
+          <div class="space-copy">
+            <h2 class="h2 ink-head">The Studio<br />Space</h2>
+            <p class="space-line" id="space-line"></p>
+            <ol class="space-stops" id="space-stops"></ol>
+          </div>
+          <div class="space-window" id="space-window">
+            <img class="space-poster" src="/space/walk-poster.webp" alt="" />
+            <canvas id="space-film" aria-label="Un giro dentro lo studio AL3: la parete degli scaffali, le piante e i neon, la postazione, la sala"></canvas>
+            <span class="space-tag" id="space-tag" aria-hidden="true"></span>
+          </div>
+          <div class="space-photos" id="space-photos"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Act 3 — Stili: four styles crossfading in one pinned stage -->
+    <section class="act stili" id="stili">
+      <div class="ch-master" id="ch-master">
+        <div class="ch-glows" id="ch-glows"></div>
+        <div class="ch-layers" id="ch-layers"></div>
+        <div class="ch-copies" id="ch-copies"></div>
+        <div class="ch-rail" id="ch-rail" aria-label="Stili"></div>
+      </div>
+    </section>
+
+    <div class="drips drips-bone" data-seed="7" data-len="0.13" aria-hidden="true"></div>
+    <!-- Act 3b — The Art Wall (owner, round 8): his designs hung on a dark pegboard, scrolled sideways -->
+    <section class="act muro" id="muro">
+      <div class="muro-stage" id="muro-stage">
+        <div class="muro-light" aria-hidden="true"></div>
+        <div class="muro-head">
+          <h2 class="h2 ink-head">The Art<br />Wall</h2>
+          <p class="muro-line">Ogni disegno appeso qui è già sulla pelle di qualcuno.</p><!-- PLACEHOLDER copy -->
+        </div>
+        <div class="muro-track" id="muro-track"></div>
+        <p class="muro-count" aria-hidden="true"><b id="muro-n">0</b> disegni</p>
+      </div>
+    </section>
+
+    <!-- Act 4 — L'archivio -->
+    <section class="act archive" id="archivio">
+      <div class="wrap">
+        <div class="archive-head">
+          <h2 class="h2 ink-head">Lavori veri,<br />pelle vera.</h2>
+          <p class="archive-count"><b id="archive-count">0</b> lavori</p>
+        </div>
+        <div class="filters" id="filters" role="toolbar" aria-label="Filtra per stile"></div>
+        <ul class="grid" id="grid"></ul>
+        <div class="more-wrap"><button class="btn btn-ghost" id="more-btn" type="button">Mostra altri</button></div>
+        <div class="archive-cta">
+          <p class="script-line">Ti sei rivisto in un lavoro?</p>
+          <a class="btn btn-primary wa-link" id="cta-btn" href="#" target="_blank" rel="noopener"><span class="pulse" aria-hidden="true"></span>Scrivimi su WhatsApp</a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/sgt.zippo/" target="_blank" rel="noopener">Altri lavori su Instagram</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event — Halloween walk-in (auto-hides after the date) -->
+    <section class="act walkin" id="walkin" hidden>
+      <div class="wrap walkin-in">
+        <h2 class="glitch" data-text="WALK-IN">WALK-IN</h2>
+        <p class="walkin-sub">di Halloween</p>
+        <p class="walkin-when"><b id="walkin-date"></b> <span id="walkin-hours"></span> · Via Mazzini 10/c</p>
+        <p class="walkin-text" id="walkin-text"></p>
+      </div>
+    </section>
+
+    <!-- Act 5 — Lo studio: VVV, the address, the hours, the boss -->
+    <section class="act studio" id="studio">
+      <div class="wrap studio-grid">
+        <div class="vvv" id="vvv">
+          <figure class="vvv-card vvv-1"><img src="/studio/vvv-red.webp" alt="Scultura bianca con crepe dorate sotto il neon rosso" loading="lazy" /></figure>
+          <figure class="vvv-card vvv-2"><img src="/studio/vvv-virescit.webp" alt="Fioriera in cemento incisa VIRESCIT con scultura e monstera" loading="lazy" /></figure>
+          <figure class="vvv-card vvv-3"><img src="/studio/vvv-blue.webp" alt="Scultura bianca con crepe dorate sotto il neon blu" loading="lazy" /></figure>
+          <svg class="vvv-crack" viewBox="0 0 400 600" preserveAspectRatio="none" aria-hidden="true"><path id="vvv-crack-path" d="" /></svg>
+        </div>
+        <div class="studio-copy">
+          <h2 class="h2 ink-head latin">Virtus virescit<br />vulnere</h2>
+          <p class="script-line">La virtù cresce dalla ferita.</p>
+          <p class="body">Le sculture dello studio le ha fatte Zippo con le sue mani, crepa dopo crepa: <b>VVV</b>, un progetto fai-da-te raccontato in tre reel. Un tatuaggio è una ferita che diventa un segno. Qui dentro, anche i muri lo sanno.</p><!-- PLACEHOLDER copy -->
+          <dl class="info">
+            <div><dt>Dove</dt><dd>Via Mazzini 10/c<br />Biella</dd></div>
+            <div><dt>Quando</dt><dd>Dal martedì al sabato<br />14:30 – 19:00</dd></div>
+            <div><dt>Adesso</dt><dd><span class="status" data-status><i></i><span>—</span></span></dd></div>
+            <div><dt>Cosa</dt><dd>Tattoo · Piercing<br />Gioielli</dd></div>
+          </dl>
+          <div class="studio-actions">
+            <a class="btn btn-primary wa-link" href="#" target="_blank" rel="noopener">Scrivimi su WhatsApp</a>
+            <a class="btn btn-ghost" href="https://maps.app.goo.gl/fw5NLr9mtjjSzXzt7" target="_blank" rel="noopener">Apri in Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- the people (round 9, taste pass): Zippo large with his line set big; the boss and the jewel as two tilted prints -->
+      <div class="wrap people">
+        <div class="print print-lead"><img src="/studio/zippo-at-work.webp" alt="Sgt. Zippo al lavoro con la macchinetta" loading="lazy" /></div>
+        <figure class="people-quote">
+          <blockquote><p>I don't procrastinate, i wait until the panic improves my focus…<br />Insomma…</p></blockquote>
+          <figcaption>Sgt. Zippo, il tatuatiere</figcaption>
+        </figure>
+        <div class="people-pair">
+          <figure class="person">
+            <div class="print"><img src="/studio/bulldog.webp" alt="Il bulldog bianco dello studio" loading="lazy" /></div>
+            <figcaption>
+              <b>Segreti del mestiere.</b>
+              <span class="small">Il vero capo: supervisiona ogni seduta. Non fa sconti.</span><!-- PLACEHOLDER copy -->
+            </figcaption>
+          </figure>
+          <figure class="person">
+            <div class="print"><img src="/studio/jewel.webp" alt="Anello per piercing con zirconi" loading="lazy" class="jewel" /></div>
+            <figcaption>
+              <b>Anche il metallo conta.</b><!-- PLACEHOLDER copy -->
+              <span class="small">Piercing e gioielleria in studio. Chiedi su WhatsApp cosa c'è disponibile.</span><!-- PLACEHOLDER copy -->
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <div class="footer-brand">
+        <img src="/brand/al3.webp" alt="Logo AL3 Tattoo Studio" width="88" height="88" loading="lazy" />
+        <p class="footer-motto">100% good habits</p>
+      </div>
+      <div class="footer-cols">
+        <p><b>AL3 Tattoo Studio</b><br />di Sgt. Zippo<br />Via Mazzini 10/c, Biella<br /><span id="vat-line"></span></p>
+        <p><a class="wa-link" href="#" target="_blank" rel="noopener">WhatsApp 015 247 0107</a><br /><a href="https://www.instagram.com/al3tattoostudio/" target="_blank" rel="noopener">@al3tattoostudio</a><br /><a href="https://www.instagram.com/sgt.zippo/" target="_blank" rel="noopener">@sgt.zippo</a></p>
+        <p><span class="status" data-status><i></i><span>—</span></span></p>
+      </div>
+    </div>
+    <div class="wrap footer-base">
+      <span>© 2026 AL3 Tattoo Studio</span>
+      <span>Tutti i lavori sono veri. I disegni senza pelle sono ridisegnati dall'IA a partire dalle foto originali.</span>
+      <button class="privacy-open" id="privacy-open" type="button">Privacy</button>
+    </div>
+  </footer>
+
+  <!-- privacy notice (round 8): what the site actually does with data, GDPR art. 13 -->
+  <dialog class="privacy" id="privacy" aria-labelledby="privacy-title" data-lenis-prevent>
+    <button class="privacy-close" id="privacy-close" type="button" aria-label="Chiudi l'informativa">×</button>
+    <h2 id="privacy-title">Privacy</h2>
+    <div class="privacy-body" id="privacy-body"></div>
+  </dialog>
+
+  <!-- lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Lavoro" hidden>
+    <button class="lb-close" id="lb-close" type="button" aria-label="Chiudi">×</button>
+    <button class="lb-arrow lb-prev" id="lb-prev" type="button" aria-label="Lavoro precedente">‹</button>
+    <figure class="lb-fig"><img id="lb-img" alt="" /><figcaption><span id="lb-cap"></span><button class="lb-mode" id="lb-mode" type="button" aria-pressed="false" hidden>Solo il disegno</button></figcaption></figure>
+    <button class="lb-arrow lb-next" id="lb-next" type="button" aria-label="Lavoro successivo">›</button>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

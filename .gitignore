@@ -1,0 +1,22 @@
+# dependencies and builds (Vercel installs and builds from site/)
+site/node_modules/
+site/dist/
+site/qa/
+__pycache__/
+.vercel/
+
+# working files and tools, not part of the site
+.taste-skill/
+.agents/
+.claude/
+.impeccable/
+skills-lock.json
+review/
+
+# another client's project notes: not for this repository
+LAPVISOR_skill-and-blueprint.md
+
+# system files
+Thumbs.db
+desktop.ini
+.DS_Store
