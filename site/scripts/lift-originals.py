@@ -74,7 +74,7 @@ def dark(bgr):
     sil = cv2.dilate(core, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (int(1.6 * U) | 1, int(1.6 * U) | 1)))
     sil = cv2.morphologyEx(sil, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (int(2.6 * U) | 1, int(2.6 * U) | 1)))
     sil = lr.fill_holes(sil)
-    a = cv2.GaussianBlur(sil.astype(np.float32) / 255, (0, 0), 0.4 * U)
+    a = cv2.GaussianBlur(sil.astype(np.float32) / 255, (0, 0), lr.EDGE * U)
     ys, xs = np.where(a > 0.04)
     pad = int(1.5 * U)
     x0, x1, y0, y1 = max(0, xs.min() - pad), min(w, xs.max() + pad), max(0, ys.min() - pad), min(h, ys.max() + pad)

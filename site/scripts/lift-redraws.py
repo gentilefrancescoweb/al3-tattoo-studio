@@ -23,6 +23,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); SITE = os.path.dirname(HERE)
 SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(SITE), "assets", "redraws")
 BONE = np.array([225, 232, 238], np.float32)  # BGR of #eee8e1, as extract-ink.py
 WORK = 1400
+EDGE = 0.08  # softness of the die-cut edge, in U (round 10: it was 0.4, a feathered cream halo round every sticker)
 
 
 def smooth_fill(val, w, sigma, prior, eps=0.03):
@@ -83,7 +84,7 @@ def lift(bgr):
             if st[i, cv2.CC_STAT_AREA] >= 0.03 * big:
                 keep[cc == i] = 255
         sil = keep
-    silf = cv2.GaussianBlur(sil.astype(np.float32) / 255, (0, 0), 0.4 * U)
+    silf = cv2.GaussianBlur(sil.astype(np.float32) / 255, (0, 0), EDGE * U)
     ink *= np.clip(silf * 1.3, 0, 1)
 
     # 4. paper → bone by multiplication; alpha = sticker body or ink, whichever is stronger
