@@ -26,6 +26,7 @@ await sleep(9000);
 
 check("loader gone and scroll unlocked", await ev(`document.getElementById('loader').classList.contains('gone') && !document.body.classList.contains('loading')`));
 check("WhatsApp links point at wa.me", await ev(`[...document.querySelectorAll('.wa-link')].every(a => a.href.startsWith('https://wa.me/390152470107'))`));
+check("call links point at the studio's number", await ev(`(() => { const t = [...document.querySelectorAll('.tel-link')]; return t.length >= 3 && t.every((a) => a.href === 'tel:+390152470107'); })()`));
 check("status chip filled", await ev(`document.querySelector('[data-status] span').textContent.length > 5`), await ev(`document.querySelector('[data-status] span').textContent`));
 
 // tunnel pick: a real mouse click on a card centre (desktop); a tap on phones
@@ -88,6 +89,7 @@ await ev(`(() => { const s = document.querySelector('#postazione'); __lenis.scro
 await sleep(1500);
 const desk = await ev(`(async () => { const sc = document.getElementById('desk-screen'); const imgs = [...sc.querySelectorAll('img')];
   await Promise.all(imgs.map((i) => i.decode().catch(() => {})));
+  await new Promise((r) => setTimeout(r, 200)); // the screen goes live just after its sheets decode
   return { live: sc.classList.contains('live'), imgs: imgs.length, ok: imgs.filter((i) => i.naturalWidth > 0).length, reduced: matchMedia('(prefers-reduced-motion: reduce)').matches }; })()`);
 // phones (round 8 mobile pass) and reduced motion keep the photo's own owl sketch: no live screen
 check(IS_MOBILE ? "desk screen stays the photo on phones" : "desk screen draws the sketches", desk.reduced || IS_MOBILE ? !desk.live : desk.live && desk.imgs === 11 && desk.ok === 11, JSON.stringify(desk));
@@ -151,11 +153,21 @@ const imgOk = await ev(`(async () => { const im = document.getElementById('lb-im
 check("lightbox image decoded", imgOk);
 const broken = await ev(`[...document.images].filter(i => i.complete && i.naturalWidth === 0 && i.getAttribute('loading') !== 'lazy').map(i => i.src)`);
 check("no broken eager images", broken.length === 0, broken.slice(0, 3).join(", "));
+// the menu (round 10): below 1100 px it holds the sections; a link closes it and lands there, and the page scrolls again
+if (VP[0] <= 1100) {
+  await ev(`__lenis.scrollTo(0, { immediate: true, force: true })`);
+  await sleep(300);
+  const m = await ev(`(() => { document.getElementById('menu-open').click(); return { open: document.getElementById('menu').open, links: document.querySelectorAll('.menu-links li:not([hidden]) a').length }; })()`);
+  await ev(`document.querySelector('.menu-links a[href="#archivio"]').click()`);
+  await sleep(1200);
+  const l = await ev(`({ closed: !document.getElementById('menu').open, top: Math.round(document.querySelector('#archivio').getBoundingClientRect().top) + 0, stopped: __lenis.isStopped })`);
+  check("menu opens and lands on a section", m.open && m.links >= 6 && l.closed && Math.abs(l.top) < 40 && !l.stopped, JSON.stringify({ ...m, ...l }));
+}
 // footer (round 8): the Partita IVA and the privacy contact are the owner's; missing ones show a "da inserire" marker
 const legal = await ev(`(() => { document.getElementById('privacy-open').click(); const d = document.getElementById('privacy');
   const r = { vat: document.getElementById('vat-line').textContent, todo: document.querySelectorAll('.todo').length, open: d.open,
-    mail: !!d.querySelector('a[href^="mailto:"]') }; d.close(); return r; })()`);
-check("footer shows the Partita IVA, privacy notice opens with its contact", /^P\.IVA \d{11}$/.test(legal.vat) && legal.todo === 0 && legal.open && legal.mail, JSON.stringify(legal));
+    mail: !!d.querySelector('a[href^="mailto:"]'), host: /Vercel/.test(d.textContent) && !/Higgsfield|Cloudflare|__cf_bm/.test(d.textContent) }; d.close(); return r; })()`);
+check("footer shows the Partita IVA, privacy notice opens with its contact and names the real host", /^P\.IVA \d{11}$/.test(legal.vat) && legal.todo === 0 && legal.open && legal.mail && legal.host, JSON.stringify(legal));
 check("no exceptions", exceptions.length === 0, exceptions.slice(0, 3).join(" | "));
 console.log(results.join("\n"));
 ws.close(); chrome.kill(); process.exit(0);

@@ -121,7 +121,7 @@ export function createTunnel(canvas, { pool, mobile, reduced, gate, gateFirst = 
       e = { tex, ready: false, img, aspect: 1, waiters: [], users: 0 };
       const queue = () => { e.aspect = img.naturalWidth / img.naturalHeight; uploads.push(e); };
       // decode() decodes off the main thread; uploading an undecoded image decodes it synchronously, mid-frame
-      img.decode().then(queue, () => { if (img.complete && img.naturalWidth) queue(); else img.addEventListener("load", queue, { once: true }); });
+      img.decode().then(queue, () => { if (img.complete && img.naturalWidth) queue(); else { e.failed = true; img.addEventListener("load", queue, { once: true }); } });
       cache.set(src, e);
       if (cache.size > MAX_TEX) {
         let oldest = null;
@@ -157,6 +157,17 @@ export function createTunnel(canvas, { pool, mobile, reduced, gate, gateFirst = 
       m.material.uniforms.uReady.value = 1;
     };
     if (e.ready) apply(); else e.waiters.push(apply);
+  }
+
+  // a plane that passed the camera comes back wearing the next design if it has arrived; if not, it flies its own design
+  // once more (round 10: on a fast scroll planes came back blank and the phone tunnel emptied). The next few designs are
+  // always on their way, so a steady scroll meets them decoded
+  const AHEAD = mobile ? 8 : 16;
+  function recycle(m) {
+    const e = texFor(pool[next % pool.length].hsrc);
+    if (e.failed) next++;
+    else if (e.ready) wear(m, next++);
+    for (let k = 1; k <= AHEAD; k++) texFor(pool[(next + k) % pool.length].hsrc);
   }
 
   const planes = Array.from({ length: N }, (_, i) => {
@@ -286,7 +297,7 @@ export function createTunnel(canvas, { pool, mobile, reduced, gate, gateFirst = 
       const u = m.userData;
       const raw = u.i * SPACING - fly;
       const lap = Math.floor(raw / LEN);
-      if (lap !== u.lap) { u.lap = lap; wear(m, next++); } // passed the camera: back far away with a new design
+      if (lap !== u.lap) { u.lap = lap; recycle(m); } // passed the camera: back far away with a new design
       const depth = raw - lap * LEN - 1.2;
       const x = Math.cos(u.ang) * rx * u.rad, y = Math.sin(u.ang) * ry * u.rad + Math.sin(time * u.sp + u.ph) * 0.07;
       m.position.set(x, y, -depth);

@@ -248,7 +248,7 @@ Lit, not lifted. Depth comes from neon on a dark ground and from real 3D, such a
 
 ## Shapes
 
-Three forms do all the work. Controls are full pills (999px), and small marks and dots are circles. Everything that shows work is square-cornered: photos, tiles, sheets and prints. The designs themselves are die-cut, so their silhouette is the shape. Bars are 2px-rounded and at least 3px tall. Thin lines are rare and each has a job: the owl's leader lines, the hero's red separator, the bar beside the desk note, hover underlines, and the outlines of the Studio Space window and the privacy notice.
+Three forms do all the work. Controls are full pills (999px), and small marks and dots are circles. Everything that shows work is square-cornered: photos, tiles, sheets and prints. The designs themselves are die-cut, so their silhouette is the shape. Bars are 2px-rounded and at least 3px tall. Thin lines are rare and each has a job: the owl's leader lines, the hero's red separator, hover underlines, and the outlines of the Studio Space window and the privacy notice.
 
 ## Components
 
@@ -274,7 +274,8 @@ There are no cards. Work is held by three forms:
 ### Navigation
 - **Bar:** fixed, transparent over the hero, then a blurred Ink 950 at 72% from the desk onward (solid, without blur, on phones). No line beneath it.
 - **Links:** 15px sentence case in Bone 2, going to Bone with a 2px Logo Red underline that draws from the left.
-- **Order:** badge and name, links, sound toggle, event chip, WhatsApp pill. Links leave below 1100px.
+- **Order:** badge and name, links, sound toggle, event chip, WhatsApp pill, menu button. Links leave below 1100px and the menu button takes over. The event chip leaves below 480px, where the menu lists it.
+- **Menu:** a full-screen sheet on Ink 950 under the same red and blue light as the Art Wall. Section names in the display face, then the WhatsApp button, a call button, the live status and the address. A link closes it and lands at once, with no flight through the acts.
 
 ### Hero Badge
 The studio's mark as the title, inked in by the needle, then alive. Two layers float 44px apart; the badge turns toward the pointer, light follows it, and a spark runs round the rim. Holding it runs the machine, with shudder, a red/blue split and ink spitting off the rim. A double click flips it to Sgt. Zippo's rose, built on the same geometry with the same effects, and the line above it changes with it.

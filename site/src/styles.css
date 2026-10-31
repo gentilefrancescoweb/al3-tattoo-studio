@@ -127,7 +127,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .vrail-mark.on .vrail-label { color: var(--red-hi); }
 @media (max-width: 759px) {
   .vrail { width: 22px; } /* --rail follows in the phone :root below */
-  .vrail-marks { display: none; } /* phones: ticks only, the edge stays free for the thumb; the nav links still work */
+  .vrail-marks { display: none; } /* phones: ticks only, the edge stays free for the thumb; the menu holds the sections */
 }
 
 .cursor { position: fixed; left: 0; top: 0; z-index: 130; /* above everything, the lightbox (110) included: the system pointer is hidden */ pointer-events: none; display: none; opacity: 0; transition: opacity .3s; }
@@ -173,8 +173,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @keyframes flicker { 0%, 61%, 64%, 66%, 100% { opacity: 1; } 62%, 65% { opacity: .25; } 63% { opacity: .8; } }
 .hero-vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 60% at 50% 50%, transparent 0%, rgba(11, 10, 11, .35) 55%, rgba(11, 10, 11, .92) 100%), linear-gradient(transparent 70%, var(--ink-950)); }
 .hero-copy { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: var(--nav-h) var(--gutter) 0; pointer-events: none; will-change: transform, opacity; }
-.hero-copy .eyebrow { color: var(--bone); opacity: .8; }
+.hero-copy .eyebrow { color: var(--bone); }
 .hero-copy .eyebrow .nb { white-space: nowrap; } /* on a phone the address drops whole to a second line */
+/* a band of ink under each hero line, soft at the ends: the designs fly through its shade and the words stay readable (round 10) */
+.hero-copy .eyebrow::before, .hero-sub::before { content: ""; position: absolute; inset: -18px -8%; z-index: -1; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(11, 10, 11, .88) 70%, rgba(11, 10, 11, 0)); }
 /* flipped to the rose, the line names him (owner, round 9): the two texts share one cell, the old one leaves at once,
    the new one comes in as the badge turns edge-on (the turn is 1.05 s) */
 .hero-copy .eyebrow { display: grid; justify-items: center; align-items: center; }
@@ -256,7 +259,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .desk-scene { position: absolute; left: 0; top: 0; will-change: transform; }
 .desk-photo { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .desk-screen { position: absolute; left: 0; top: 0; transform-origin: 0 0; isolation: isolate; overflow: hidden; display: none; }
-.desk-screen.live { display: block; }
+.desk-screen.live { display: block; animation: desk-on .7s var(--ease); } /* over the photo's own owl, once its sheets are decoded (desk.js) */
+@keyframes desk-on { from { opacity: 0; } }
 .desk-screen img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .desk-screen::after { content: ""; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: multiply;
   background: radial-gradient(ellipse at 45% 42%, rgba(255, 255, 255, 0) 55%, rgba(214, 204, 222, 1) 125%), rgb(244, 237, 255); }
@@ -273,7 +277,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .desk-copy { position: absolute; right: var(--gut-r); bottom: calc(40px + env(safe-area-inset-bottom)); max-width: 560px; will-change: opacity, transform; } /* right: the sketching screen is on the left */
 .desk-copy .h2 { margin: 6px 0 14px; font-size: clamp(38px, 5.4vw, 78px); } /* "OGNI SEGNO" is 7× its size wide: two lines in 560 px */
 .desk-line { margin: 0; color: var(--bone-2); font-size: 17px; max-width: 30ch; }
-.desk-note { margin: 14px 0 0; padding-left: 12px; border-left: 2px solid var(--red); color: var(--bone); font-size: 15px; line-height: 1.5; max-width: 40ch; }
+.desk-note { margin: 14px 0 0; color: var(--bone); font-size: 15px; line-height: 1.5; max-width: 40ch; }
 .desk-fine { margin: 10px 0 0; color: var(--bone-3); font-size: 13px; letter-spacing: .01em; }
 @media (max-width: 759px) {
   .desk { height: 200svh; }
@@ -441,15 +445,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .lb-fig { margin: 0; height: 100%; display: flex; flex-direction: column; align-items: center; gap: 14px; }
 .lb-fig img { height: calc(100% - 40px); width: auto; max-width: 100%; object-fit: contain; box-shadow: 0 30px 80px rgba(0, 0, 0, .7); }
 .lb-fig.ink { background: radial-gradient(closest-side, rgba(211, 23, 43, .16), transparent 75%); }
-.lb-fig.ink img { box-shadow: none; filter: drop-shadow(0 0 22px rgba(238, 232, 225, .18)); }
+.lb-fig.ink img { box-shadow: none; }
 .lb-fig figcaption { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
 .lb-mode { min-height: 36px; padding: 0 14px; border-radius: 999px; background: var(--ink-700); font-size: 14px; color: var(--bone); }
 .lb-mode:hover { background: #3b3538; }
 .lb-mode[aria-pressed="true"] { background: var(--bone); color: var(--ink-950); }
 .lb-fig figcaption #lb-cap { font-size: 15px; color: var(--bone-2); }
 .lb-fig figcaption b { color: var(--red-hi); margin-right: 10px; }
-.lb-close { position: absolute; top: calc(12px + env(safe-area-inset-top)); right: 16px; width: 48px; height: 48px; font-size: 34px; line-height: 1; }
-.lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 72px; font-size: 48px; line-height: 1; color: var(--bone-2); }
+.lb-close { position: absolute; top: calc(12px + env(safe-area-inset-top)); right: 16px; width: 48px; height: 48px; display: grid; place-items: center; }
+.lb-close .ico { width: 28px; height: 28px; }
+.lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 72px; display: grid; place-items: center; color: var(--bone-2); }
+.lb-arrow .ico { width: 32px; height: 32px; }
 .lb-arrow:hover { color: var(--bone); }
 .lb-prev { left: 8px; }
 .lb-next { right: 8px; }
@@ -616,6 +622,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 1100px) {
   .snd { margin-left: auto; }
 }
+@media (max-width: 480px) {
+  .walkin-chip { display: none; } /* no room beside the menu button, which lists the walk-in */
+}
 @media (max-width: 420px) {
   .brand-txt { display: none; }
 }
@@ -699,5 +708,35 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .privacy p { margin: 0; font-size: 15px; line-height: 1.6; }
 .privacy .privacy-upd { font-size: 12px; color: var(--bone-3); }
 .privacy code { font-size: 13px; color: var(--bone); }
-.privacy-close { position: absolute; top: 10px; right: 12px; width: 44px; height: 44px; font-size: 28px; line-height: 1; color: var(--bone-2); }
+.privacy-close { position: absolute; top: 10px; right: 12px; width: 44px; height: 44px; display: grid; place-items: center; color: var(--bone-2); }
+.privacy-close .ico { width: 24px; height: 24px; }
 .privacy-close:hover { color: var(--bone); }
+
+/* the drawn icons: one stroke, the sound toggle's */
+.ico { display: block; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ══ round 10: the menu — the nav links leave at 1100 px and the rail's scales at 760; this holds them ═════════════════════ */
+.menu-open { display: none; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--ink-700); color: var(--bone); flex: none; transition: background .25s; }
+.menu-open:hover { background: #3b3538; }
+.menu-open .ico { width: 20px; height: 20px; }
+@media (max-width: 1100px) { .menu-open { display: grid; } }
+@media (max-width: 759px) { .menu-open { width: 38px; height: 38px; } }
+.menu { position: fixed; inset: 0; width: 100%; height: 100svh; max-width: none; max-height: none; margin: 0; border: 0; overflow: auto; overscroll-behavior: contain;
+  padding: calc(var(--nav-h) + 12px) max(var(--gutter), var(--rail-clear)) calc(28px + env(safe-area-inset-bottom)); color: var(--bone);
+  background: radial-gradient(45% 60% at 0% 40%, rgba(211, 23, 43, .2), transparent 70%), radial-gradient(45% 60% at 100% 60%, rgba(59, 124, 255, .17), transparent 70%), var(--ink-950); }
+.menu[open] { display: flex; flex-direction: column; gap: 28px; }
+.motion .menu[open] { animation: menu-in .3s var(--ease); }
+@keyframes menu-in { from { opacity: 0; translate: 0 -10px; } }
+.menu, .menu * { cursor: auto; } /* the top layer, above the machine cursor: as in the privacy notice */
+.menu a, .menu button { cursor: pointer; }
+.menu-close { position: absolute; top: calc(8px + env(safe-area-inset-top)); right: calc(var(--gutter) + env(safe-area-inset-right) - 3px); width: 44px; height: 44px; display: grid; place-items: center; color: var(--bone); }
+.menu-close .ico { width: 26px; height: 26px; }
+.menu-links { list-style: none; margin: 0; padding: 0; }
+.menu-links a { display: flex; align-items: center; min-height: 54px; font-family: var(--f-display); font-weight: 600; font-size: clamp(25px, 7.4vw, 40px); line-height: 1.05; letter-spacing: .02em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
+.menu-links a:hover, .menu-links a:active { color: var(--red-hi); }
+.menu-foot { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.menu-foot p { flex: 1 0 100%; margin: 6px 0 0; font-size: 14px; line-height: 1.9; color: var(--bone-2); }
+@media (max-height: 560px) { /* a phone on its side: two columns of links */
+  .menu-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .menu-links a { min-height: 44px; font-size: 21px; }
+}

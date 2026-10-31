@@ -60,12 +60,18 @@ export function createDesk(section, { mobile, reduced, gate }) {
     pen = document.createElement("span");
     pen.className = "sk-pen";
     screen.appendChild(pen);
-    screen.classList.add("live");
-    cycle();
+    // live once every sheet is decoded, so the photo's own owl stays on the panel until then (round 10: shown at once it was a
+    // blank white panel, for over 9 s after a nav jump, while these images queued behind the hero's)
+    Promise.allSettled([...screen.querySelectorAll("img")].map((i) => i.decode())).then(() => {
+      screen.classList.add("live");
+      cycle();
+      settle(p > 0.72); // the scroll may have reached the end of the push-in meanwhile
+      if (wanted && !hold) tl.play();
+    });
   }
 
   // one design after another: pencil construction fades in, the line is drawn top to bottom, it holds
-  let tl = null, hold = false;
+  let tl = null, hold = false, wanted = false;
   function cycle() {
     tl = gsap.timeline({ repeat: -1, delay: 2.4 });
     for (let n = 1; n <= sheets.length; n++) {
@@ -147,6 +153,6 @@ export function createDesk(section, { mobile, reduced, gate }) {
     fit,
     set,
     near() { build(); },
-    toggle(on) { if (!tl || hold) return; on ? tl.play() : tl.pause(); },
+    toggle(on) { wanted = on; if (!tl || hold) return; on ? tl.play() : tl.pause(); },
   };
 }

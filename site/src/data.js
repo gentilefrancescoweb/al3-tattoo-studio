@@ -2,7 +2,7 @@
 // @sgt.zippo (studied 2026-10-18); lines marked PLACEHOLDER are drafts for the
 // owner to review (see BRIEF.md §2, open item 4).
 
-export const PRIVACY_UPDATED = "25 ottobre 2026";
+export const PRIVACY_UPDATED = "31 ottobre 2026";
 
 export const STUDIO = {
   name: "AL3 Tattoo Studio",
@@ -105,7 +105,7 @@ export const WORKS = [
 
 // process act: stages over scroll progress [a, b]; dot = anchor on the owl (fraction of the plate: the design on the page for 01, the arm after)
 export const PROCESS = [
-  { n: "01", t: "Il disegno", line: "Su misura, anche a mano libera. Prima di toccare la pelle, il lavoro esiste sulla carta.", a: 0.0, b: 0.2, dot: [0.4, 0.18] }, // PLACEHOLDER copy
+  { n: "01", t: "Il disegno", line: "Su misura, anche a mano libera. Prima di toccare la pelle, il lavoro esiste già sull'iPad.", a: 0.0, b: 0.2, dot: [0.4, 0.18] }, // PLACEHOLDER copy
   { n: "02", t: "Lo stencil", line: "La traccia viola: la mappa che l'ago seguirà, messa dove il corpo la vuole.", a: 0.2, b: 0.38, dot: [0.38, 0.4] }, // PLACEHOLDER copy
   { n: "03", t: "La linea", line: "La struttura. Una linea pulita regge tutto il resto.", a: 0.38, b: 0.58, dot: [0.33, 0.56] }, // PLACEHOLDER copy
   { n: "04", t: "L'ombra", line: "Black & grey: il nero costruito a strati, dal più profondo al grigio più leggero.", a: 0.58, b: 0.84, dot: [0.5, 0.5] }, // PLACEHOLDER copy

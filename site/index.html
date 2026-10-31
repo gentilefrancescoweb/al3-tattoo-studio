@@ -8,7 +8,9 @@
   <meta name="theme-color" content="#0b0a0b" />
   <meta property="og:title" content="AL3 Tattoo Studio · Sgt. Zippo" />
   <meta property="og:description" content="Il tatuatiere di Biella. 100% good habits." />
-  <meta property="og:image" content="/studio/vvv-red.webp" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://al3-tattoo-studio.vercel.app/" />
+  <meta property="og:image" content="https://al3-tattoo-studio.vercel.app/studio/vvv-red.webp" /><!-- previews need the full address: change both with the domain -->
   <link rel="icon" href="/favicon.ico" sizes="48x48" />
   <link rel="icon" type="image/png" href="/brand/icon-192.png" sizes="192x192" />
   <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
@@ -58,6 +60,7 @@
     <a class="pill wa-link" id="nav-pill" href="#" target="_blank" rel="noopener">
       <span class="pulse" aria-hidden="true"></span><span class="pill-long">Scrivimi su WhatsApp</span><span class="pill-short">WhatsApp</span>
     </a>
+    <button class="menu-open" id="menu-open" type="button" aria-haspopup="dialog" aria-label="Apri il menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
   </header>
 
   <main id="main">
@@ -86,7 +89,7 @@
     <section class="act desk" id="postazione">
       <div class="desk-stage">
         <div class="desk-scene" id="desk-scene">
-          <img class="desk-photo" id="desk-photo" src="/process/desk.webp" alt="La postazione: sullo schermo di sinistra, lo schizzo di un lupo pronto per diventare tatuaggio" width="2000" height="1125" />
+          <img class="desk-photo" id="desk-photo" src="/process/desk.webp" alt="La postazione: sullo schermo di sinistra, lo schizzo di un gufo pronto per diventare tatuaggio" width="2000" height="1125" />
           <div class="desk-screen" id="desk-screen" aria-hidden="true"></div>
         </div>
         <div class="desk-vig" aria-hidden="true"></div>
@@ -153,7 +156,7 @@
         <div class="muro-light" aria-hidden="true"></div>
         <div class="muro-head">
           <h2 class="h2 ink-head">The Art<br />Wall</h2>
-          <p class="muro-line">Ogni disegno appeso qui è già sulla pelle di qualcuno.</p><!-- PLACEHOLDER copy -->
+          <p class="muro-line">Molti di questi disegni sono già sulla pelle di qualcuno.</p><!-- PLACEHOLDER copy -->
         </div>
         <div class="muro-track" id="muro-track"></div>
         <p class="muro-count" aria-hidden="true"><b id="muro-n">0</b> disegni</p>
@@ -209,6 +212,7 @@
           </dl>
           <div class="studio-actions">
             <a class="btn btn-primary wa-link" href="#" target="_blank" rel="noopener">Scrivimi su WhatsApp</a>
+            <a class="btn btn-ghost tel-link" href="#">Chiama 015 247 0107</a>
             <a class="btn btn-ghost" href="https://maps.app.goo.gl/fw5NLr9mtjjSzXzt7" target="_blank" rel="noopener">Apri in Maps</a>
           </div>
         </div>
@@ -249,7 +253,7 @@
       </div>
       <div class="footer-cols">
         <p><b>AL3 Tattoo Studio</b><br />di Sgt. Zippo<br />Via Mazzini 10/c, Biella<br /><span id="vat-line"></span></p>
-        <p><a class="wa-link" href="#" target="_blank" rel="noopener">WhatsApp 015 247 0107</a><br /><a href="https://www.instagram.com/al3tattoostudio/" target="_blank" rel="noopener">@al3tattoostudio</a><br /><a href="https://www.instagram.com/sgt.zippo/" target="_blank" rel="noopener">@sgt.zippo</a></p>
+        <p><a class="wa-link" href="#" target="_blank" rel="noopener">WhatsApp 015 247 0107</a><br /><a class="tel-link" href="#">Tel. 015 247 0107</a><br /><a href="https://www.instagram.com/al3tattoostudio/" target="_blank" rel="noopener">@al3tattoostudio</a><br /><a href="https://www.instagram.com/sgt.zippo/" target="_blank" rel="noopener">@sgt.zippo</a></p>
         <p><span class="status" data-status><i></i><span>—</span></span></p>
       </div>
     </div>
@@ -262,17 +266,38 @@
 
   <!-- privacy notice (round 8): what the site actually does with data, GDPR art. 13 -->
   <dialog class="privacy" id="privacy" aria-labelledby="privacy-title" data-lenis-prevent>
-    <button class="privacy-close" id="privacy-close" type="button" aria-label="Chiudi l'informativa">×</button>
+    <button class="privacy-close" id="privacy-close" type="button" aria-label="Chiudi l'informativa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     <h2 id="privacy-title">Privacy</h2>
     <div class="privacy-body" id="privacy-body"></div>
   </dialog>
 
+  <!-- the menu (round 10, finish review): the nav links leave at 1100 px and the rail's scales at 760; without it a phone had only the scroll -->
+  <dialog class="menu" id="menu" aria-label="Menu" data-lenis-prevent>
+    <button class="menu-close" id="menu-close" type="button" aria-label="Chiudi il menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <nav aria-label="Sezioni del sito">
+      <ul class="menu-links">
+        <li><a href="#postazione">Processo</a></li>
+        <li><a href="#spazio">The Studio Space</a></li>
+        <li><a href="#stili">Stili</a></li>
+        <li><a href="#muro">The Art Wall</a></li>
+        <li><a href="#archivio">Archivio</a></li>
+        <li id="menu-walkin" hidden><a href="#walkin">Walk-in 31/10</a></li>
+        <li><a href="#studio">Studio e orari</a></li>
+      </ul>
+    </nav>
+    <div class="menu-foot">
+      <a class="btn btn-primary wa-link" href="#" target="_blank" rel="noopener">Scrivimi su WhatsApp</a>
+      <a class="btn btn-ghost tel-link" href="#">Chiama 015 247 0107</a>
+      <p><span class="status" data-status><i></i><span>—</span></span><br />Via Mazzini 10/c, Biella</p>
+    </div>
+  </dialog>
+
   <!-- lightbox -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Lavoro" hidden>
-    <button class="lb-close" id="lb-close" type="button" aria-label="Chiudi">×</button>
-    <button class="lb-arrow lb-prev" id="lb-prev" type="button" aria-label="Lavoro precedente">‹</button>
+    <button class="lb-close" id="lb-close" type="button" aria-label="Chiudi"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="lb-arrow lb-prev" id="lb-prev" type="button" aria-label="Lavoro precedente"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
     <figure class="lb-fig"><img id="lb-img" alt="" /><figcaption><span id="lb-cap"></span><button class="lb-mode" id="lb-mode" type="button" aria-pressed="false" hidden>Solo il disegno</button></figcaption></figure>
-    <button class="lb-arrow lb-next" id="lb-next" type="button" aria-label="Lavoro successivo">›</button>
+    <button class="lb-arrow lb-next" id="lb-next" type="button" aria-label="Lavoro successivo"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
   </div>
 
   <script type="module" src="/src/main.js"></script>

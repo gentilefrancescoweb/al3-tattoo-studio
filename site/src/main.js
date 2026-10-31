@@ -618,6 +618,7 @@ function actWalkin() {
   if (romeNow().date >= WALKIN.until) return;
   $("#walkin").hidden = false;
   $("#walkin-chip").hidden = false;
+  $("#menu-walkin").hidden = false;
   $("#walkin-date").textContent = WALKIN.date;
   $("#walkin-hours").textContent = WALKIN.hours;
   $("#walkin-text").textContent = WALKIN.text;
@@ -641,6 +642,7 @@ function actStudio() {
 /* ── chrome: nav, viper rail, pulse economy, cursor, chroma, anchors ── */
 function chrome() {
   $$(".wa-link").forEach((a) => { a.href = waLink(); });
+  $$(".tel-link").forEach((a) => { a.href = `tel:${STUDIO.phoneTel}`; });
   const nav = $("#nav");
   ScrollTrigger.create({
     trigger: "#postazione", start: () => `top ${navH()}px`,
@@ -676,15 +678,24 @@ function chrome() {
     if (ca !== caShown) { caShown = ca; caEl.style.setProperty("--ca", ca); }
   });
 
-  // eased anchors through Lenis
+  // eased anchors through Lenis; from the menu the page is already covered, so it lands at once (a 1.6 s flight through
+  // 30,000 px of acts on a phone would load and stutter through every one of them)
   $$('a[href^="#"]').forEach((a) => {
+    const landNow = !!a.closest("#menu");
     a.addEventListener("click", (e) => {
       const href = a.getAttribute("href");
       if (href === "#") return;
       const target = href === "#top" ? 0 : $(href);
-      if (target !== null) { e.preventDefault(); lenis.scrollTo(target, { duration: 1.6 }); }
+      if (target !== null) { e.preventDefault(); lenis.scrollTo(target, landNow ? { immediate: true, force: true } : { duration: 1.6 }); }
     });
   });
+
+  // the menu (phones and tablets): a link or a tap on its ground closes it
+  const menu = $("#menu");
+  $("#menu-open").addEventListener("click", () => { menu.showModal(); lenis.stop(); });
+  $("#menu-close").addEventListener("click", () => menu.close());
+  menu.addEventListener("click", (e) => { if (e.target === menu || e.target.closest("a")) menu.close(); });
+  menu.addEventListener("close", () => lenis.start());
 
   // tattoo-machine cursor (fine pointers only): the needle tip sits on the pointer, the machine buzzes on a press
   if (FINE) {
@@ -744,7 +755,8 @@ addEventListener("resize", () => {
 });
 
 /* ── footer: Partita IVA + the privacy notice (round 8). Written from what the site does, audited on the live site:
-   one host (its own), no forms, no analytics, no storage; the hosting's Cloudflare sets one security cookie. ── */
+   one host (its own), no forms, no analytics, no storage. On Vercel a normal visit sets no cookie (live headers, 2026-10-31);
+   the Vercel facts come from its privacy notice, vercel.com/legal/privacy-notice. ── */
 function privacy() {
   const todo = (what) => `<mark class="todo">${what} da inserire</mark>`;
   const vat = STUDIO.vat ? `P.IVA ${STUDIO.vat}` : todo("P.IVA");
@@ -757,7 +769,7 @@ function privacy() {
     <h3>Cosa raccoglie questo sito</h3>
     <p>Niente moduli, niente registrazione, nessuno strumento di statistica o di profilazione: il sito non ti chiede dati personali e non ne salva nel tuo browser. Caratteri, immagini e video arrivano tutti dal sito stesso: durante la visita nessun dato viene inviato a Google o ad altri terzi.</p>
     <h3>Dati tecnici</h3>
-    <p>Per mostrare il sito e proteggerlo, il fornitore dell'hosting (Higgsfield) e la sua rete (Cloudflare) trattano i dati tecnici della connessione, come l'indirizzo IP, e impostano un solo cookie tecnico di sicurezza, <code>__cf_bm</code> (Cloudflare, dura 30 minuti), che serve a riconoscere il traffico automatico. È un cookie necessario: non richiede consenso e non serve a profilarti. Base giuridica: il legittimo interesse a far funzionare il sito in sicurezza (art. 6, par. 1, lett. f GDPR).</p>
+    <p>Il sito è ospitato da Vercel Inc. (Stati Uniti). Per mostrarlo e proteggerlo, Vercel tratta i dati tecnici della connessione: l'indirizzo IP, la città e il paese che se ne ricavano e la configurazione del dispositivo. Vercel aderisce all'EU-U.S. Data Privacy Framework, che copre il trasferimento di questi dati negli Stati Uniti. Il sito non imposta cookie. Solo in caso di traffico anomalo, la protezione di Vercel può chiedere al browser una verifica automatica e salvare un cookie tecnico di sicurezza: è necessario, non richiede consenso e non serve a profilarti. Base giuridica: il legittimo interesse a far funzionare il sito in sicurezza (art. 6, par. 1, lett. f GDPR).</p>
     <h3>WhatsApp e Instagram</h3>
     <p>I pulsanti WhatsApp e i link a Instagram portano su servizi di Meta: da lì valgono le loro informative. I messaggi che ci mandi su WhatsApp servono a risponderti e a fissare gli appuntamenti.</p>
     <h3>I tuoi diritti</h3>
